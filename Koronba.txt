@@ -97,7 +97,7 @@ entity:SetCallback("OnSpawned", function()
     end
         game:service('Workspace')["Koronba4gou"].Koronba.Music.SoundId=getcustomasset("Democ")
         game:service('Workspace')["Koronba4gou"].Koronba.Music:Play()
-        game:service('Workspace')["Koronba4gou"].Koronba.Music.Volume=3
+        game:service('Workspace')["Koronba4gou"].Koronba.Music.Volume=1.5
 end)
 
 entity:SetCallback("OnStartMoving", function()
