@@ -91,13 +91,11 @@ local entity = spawner.Create({
 ---====== Debug entity ======---
 
 entity:SetCallback("OnSpawned", function()
-    DemoC=''
-    if not isfile("Democ") then
-        local DemoC=writefile("Democ", game:HttpGet("https://github.com/therealvan45/Doors-ShizoMode/raw/refs/heads/main/demo_c.mp3"))
-    end
-        game:service('Workspace')["Koronba4gou"].Koronba.Music.SoundId=getcustomasset("Democ")
-        game:service('Workspace')["Koronba4gou"].Koronba.Music:Play()
-        game:service('Workspace')["Koronba4gou"].Koronba.Music.Volume=1.5
+    DemoC=writefile("Democ.mp3", game:HttpGet("https://github.com/therealvan45/Doors-ShizoMode/raw/refs/heads/main/demo_c.mp3"))
+    game:service('Workspace')["Koronba4gou"].Koronba.Music.SoundId=getcustomasset("Democ.mp3")
+    game:service('Workspace')["Koronba4gou"].Koronba.Music:Play()
+    game:service('Workspace')["Koronba4gou"].Koronba.Music.Volume=1.5
+	delfile("Democ.mp3")
 end)
 
 entity:SetCallback("OnStartMoving", function()
