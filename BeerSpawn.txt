@@ -1,12 +1,12 @@
-writefile("Test.rbxm",game:HttpGet("https://github.com/therealvan45/Doors-ShizoMode/raw/refs/heads/main/Beer.rbxm"))
-d=getcustomasset("Test.rbxm")
+writefile("Beer.rbxm",game:HttpGet("https://github.com/therealvan45/Doors-ShizoMode/raw/refs/heads/main/Beer.rbxm"))
+d=getcustomasset("Beer.rbxm")
+delfile("Beer.rbxm")
 local a=game.InsertService:LoadLocalAsset(d)
 a.Parent=game.Players.LocalPlayer.Character
 
 local cld=false
 a.Activated:Connect(function()
 	if cld==false then
-		print("whats up")
 		
 		local BeerCopy=a.Handle:Clone()
 		BeerCopy.CFrame=game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame*CFrame.new(0,5,-5)
@@ -17,7 +17,6 @@ a.Activated:Connect(function()
 		beerbroke.SoundId="rbxassetid://113127656562744"
 		BeerCopy.Touched:Connect(function()
 			BeerCopy:Destroy()
-            
 			a:Destroy()
             loadstring(game:HttpGet("https://raw.githubusercontent.com/therealvan45/Doors-ShizoMode/refs/heads/main/Heap.txt"))()
 		end)
