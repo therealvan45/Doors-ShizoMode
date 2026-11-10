@@ -1,0 +1,161 @@
+---====== Load spawner ======---
+
+local spawner = loadstring(game:HttpGet("https://raw.githubusercontent.com/no12356/Utilities/refs/heads/main/Doors/Entity%20Spawner/V2/Source.lua"))()
+
+---====== Create entity ======---
+
+local entity = spawner.Create({
+	Entity = {
+		Name = "Heap",
+		Asset = "https://github.com/therealvan45/Doors-ShizoMode/raw/refs/heads/main/Heap.rbxm",
+		HeightOffset = 0
+	},
+	Lights = {
+		Flicker = {
+			Enabled = true,
+			Duration = 1
+		},
+		Shatter = false,
+		Repair = false
+	},
+	CameraShake = {
+		Enabled = true,
+		Range = 100,
+		Values = {1.5, 20, 0.1, 1} -- Magnitude, Roughness, FadeIn, FadeOut
+	},
+	Movement = {
+		Speed = 50,
+		Delay = 2,
+		Reversed = false
+	},
+	Rebounding = {
+		Enabled = false,
+		Type = "Ambush", -- "Blitz"
+		Min = 1,
+		Max = 1,
+		Delay = 2
+	},
+	Damage = {
+		Enabled = true,
+		Range = 40,
+		Amount = 999
+	},
+	Jumpscare = {
+		false,
+		{
+			Image1 = "https://raw.githubusercontent.com/no12356/Doors-Hardmode-Remake/refs/heads/main/jumpscares/depth.png",
+			Image2 = "https://raw.githubusercontent.com/no12356/Doors-Hardmode-Remake/refs/heads/main/jumpscares/depth.png",
+
+			Shake = true,
+
+			Sound1 = {
+				10483790459,
+				{
+					Volume = 0.5
+				}
+			},
+
+			Sound2 = {
+				5263560566,
+				{
+					Volume = 0.5
+				}
+			},
+
+			Flashing = {
+				true,
+				Color3.fromRGB(50, 115, 108)
+			},
+
+			Tease = {
+				false,
+				Min = 1,
+				Max = 5
+			}
+		}
+	},
+	Crucifixion = {
+		Enabled = true,
+		Range = 40,
+		Resist = false,
+		Break = true
+	},
+	Death = {
+		Type = "Curious", -- "Curious"
+		Hints = {"Uhhh!..?","I wonder what is this game?","some people told me that its among the sleep.","Do not drop that bottle when you find it. just keep it with yourself","Please trust me."},
+		Cause = ""
+	}
+})
+
+---====== Debug entity ======---
+
+entity:SetCallback("OnSpawned", function()
+
+end)
+
+entity:SetCallback("OnStartMoving", function()
+
+end)
+
+entity:SetCallback("OnReachNode", function(node)
+
+end)
+
+entity:SetCallback("OnEnterRoom", function(room, firstTime)
+	if firstTime == true then
+
+	else
+
+	end
+end)
+
+entity:SetCallback("OnLookAt", function(lineOfSight)
+	if lineOfSight == true then
+
+	else
+
+	end
+end)
+
+entity:SetCallback("OnRebounding", function(startOfRebound)
+	if startOfRebound == true then
+
+	else
+
+	end
+end)
+
+entity:SetCallback("OnDespawning", function()
+
+end)
+
+entity:SetCallback("OnDespawned", function()
+
+end)
+
+entity:SetCallback("OnDamagePlayer", function(newHealth)
+	if newHealth == 0 then
+
+	else
+
+	end
+end)
+
+--[[
+
+DEVELOPER NOTE:
+By overwriting 'CrucifixionOverwrite' the default crucifixion callback will be replaced with your custom callback.
+
+entity:SetCallback("CrucifixionOverwrite", function()
+	print("Custom crucifixion callback")
+end)
+
+]]--
+
+---====== Run entity ======---
+
+entity:Run()
+-- entity:Pause()
+-- entity:Resume()
+-- entity:IsPaused()
+-- entity:Despawn()

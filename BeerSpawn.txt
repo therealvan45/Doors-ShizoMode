@@ -1,0 +1,26 @@
+writefile("Test.rbxm",game:HttpGet("https://github.com/therealvan45/Doors-ShizoMode/raw/refs/heads/main/Beer.rbxm"))
+d=getcustomasset("Test.rbxm")
+local a=game.InsertService:LoadLocalAsset(d)
+a.Parent=game.Players.LocalPlayer.Character
+
+local cld=false
+a.Activated:Connect(function()
+	if cld==false then
+		print("whats up")
+		
+		local BeerCopy=a.Handle:Clone()
+		BeerCopy.CFrame=game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame*CFrame.new(0,5,-5)
+		BeerCopy.Parent=workspace
+		BeerCopy.Anchored=false
+		local beerbroke=Instance.new("Sound",BeerCopy)
+		beerbroke.PlayOnRemove=true
+		beerbroke.SoundId="rbxassetid://113127656562744"
+		BeerCopy.Touched:Connect(function()
+			BeerCopy:Destroy()
+			a:Destroy()
+		end)
+		
+		cld=true
+	end
+	
+end)
