@@ -99,7 +99,7 @@ entity:SetCallback("OnSpawned", function()
         SpwnSnd:Destroy()
     end)
 
-    WhatTheHeck=coroutine.wrap(function()
+    
         ThisStupidGuy=entity.Model
         Torsopart=ThisStupidGuy.HumanoidRootPart
         plr=game.Players.LocalPlayer
@@ -148,8 +148,7 @@ entity:SetCallback("OnSpawned", function()
             end
             wait(0.3)
         end
-    end)
-    WhatTheHeck()
+    
 end)
 
 entity:SetCallback("OnStartMoving", function()
