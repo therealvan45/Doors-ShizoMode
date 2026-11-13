@@ -34,7 +34,7 @@ cld=false
 
 script.Parent.Activated:Connect(function()
 	if cld==false then
-		coroutine.wrap(function()
+		task.spawn(function()
 			local beam=Instance.new("Part")
 			beam.Anchored=true
 			beam.Material=Enum.Material.ForceField
@@ -55,12 +55,12 @@ script.Parent.Activated:Connect(function()
 			end
 			beam:Destroy()
 
-		end)()
-		coroutine.wrap(function()
+		end)
+		task.spawn(function()
 			lightning_bolt.Parent=game.Players.LocalPlayer.Character.HumanoidRootPart
 			lightning_bolt:Play()
 			game.Players.LocalPlayer.Character.Humanoid.MaxHealth=NewChange
-			game.Players.LocalPlayer.Character.Humanoid.WalkSpeed=40
+			game.Players.LocalPlayer.Character.Humanoid.WalkSpeed=23
 			game.Players.LocalPlayer.Character.Humanoid.Health=NewChange
 			wait(10)
 			game.Players.LocalPlayer.Character.Humanoid.Health=OldHealth
@@ -70,10 +70,10 @@ script.Parent.Activated:Connect(function()
 			
 		end)()
 		cld=true
-		wait(30)
-		cld=false
+		
 	end
-	
+	wait(30)
+	cld=false
 	
 end)
 end))
