@@ -1,5 +1,23 @@
 ---====== Load spawner ======---
 
+amb="HPamb"
+JMPS="HPjpms"
+IseeYou="HPSeeYa"
+SpwnPwn="HPspwn"
+writefile(amb, game:HttpGet("https://github.com/therealvan45/Doors-ShizoMode/raw/refs/heads/main/ambient.wav"))
+writefile(JMPS, game:HttpGet("https://github.com/therealvan45/Doors-ShizoMode/raw/refs/heads/main/jumpscare.wav"))
+writefile(SpwnPwn, game:HttpGet("https://github.com/therealvan45/Doors-ShizoMode/raw/refs/heads/main/weird%20noise.wav"))
+writefile(IseeYou, game:HttpGet("https://github.com/therealvan45/Doors-ShizoMode/raw/refs/heads/main/SawIt.wav"))
+
+
+local AmAs=getcustomasset(amb)
+local JMPSAs=getcustomasset(JMPS)
+local IseeAs=getcustomasset(IseeYou)
+local SpwnPwnAs=getcustomasset(SpwnPwn)
+
+
+local SawItFirst=false
+
 local spawner = loadstring(game:HttpGet("https://raw.githubusercontent.com/no12356/Utilities/refs/heads/main/Doors/Entity%20Spawner/V2/Source.lua"))()
 
 ---====== Create entity ======---
@@ -15,16 +33,16 @@ local entity = spawner.Create({
 			Enabled = true,
 			Duration = 1
 		},
-		Shatter = false,
+		Shatter = true,
 		Repair = false
 	},
 	CameraShake = {
 		Enabled = true,
-		Range = 100,
-		Values = {1.5, 20, 0.1, 1} -- Magnitude, Roughness, FadeIn, FadeOut
+		Range = 30,
+		Values = {20, 25, 0.1, 1} -- Magnitude, Roughness, FadeIn, FadeOut
 	},
 	Movement = {
-		Speed = 50,
+		Speed = 40,
 		Delay = 2,
 		Reversed = true
 	},
@@ -41,10 +59,10 @@ local entity = spawner.Create({
 		Amount = 999
 	},
 	Jumpscare = {
-		false,
+		true,
 		{
-			Image1 = "https://raw.githubusercontent.com/no12356/Doors-Hardmode-Remake/refs/heads/main/jumpscares/depth.png",
-			Image2 = "https://raw.githubusercontent.com/no12356/Doors-Hardmode-Remake/refs/heads/main/jumpscares/depth.png",
+			Image1 = "",
+			Image2 = "",
 
 			Shake = true,
 
@@ -56,15 +74,15 @@ local entity = spawner.Create({
 			},
 
 			Sound2 = {
-				5263560566,
+				JMPSAs,
 				{
-					Volume = 0.5
+					Volume = 10
 				}
 			},
 
 			Flashing = {
 				true,
-				Color3.fromRGB(50, 115, 108)
+				Color3.fromRGB(0,0,0)
 			},
 
 			Tease = {
@@ -88,9 +106,23 @@ local entity = spawner.Create({
 })
 
 ---====== Debug entity ======---
+local function SomeStupidSoundPlay(Aud,Parent,vlm,min,max,loop)
+    local aud=Instance.new("Sound",Parent)
+    aud.Volume=vlm
+    aud.SoundId=Aud
+    aud.RollOffMaxDistance=max
+    aud.RollOffMinDistance=min
+    aud.Looped=loop
+    aud:Play()
+    aud.Ended:Once(function()
+        aud:Destroy()
+    end)
+        
+end
 
 entity:SetCallback("OnSpawned", function()
-
+    SomeStupidSoundPlay(SpwnPwnAs, workspace, 5, 1, 10000, false)
+    SomeStupidSoundPlay(AmAs, entity.Model.Movep, 3, 30, 4000, true)
 end)
 
 entity:SetCallback("OnStartMoving", function()
@@ -111,7 +143,10 @@ end)
 
 entity:SetCallback("OnLookAt", function(lineOfSight)
 	if lineOfSight == true then
-
+        if SawItFirst==false then
+            SomeStupidSoundPlay(IseeAs, workspace, 10, 30, 4000, false)
+            SawItFirst=true
+        end
 	else
 
 	end
