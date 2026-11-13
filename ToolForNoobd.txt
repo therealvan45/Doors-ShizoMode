@@ -1,0 +1,93 @@
+
+--Converted with ttyyuu12345's model to script plugin v4
+function sandbox(var,func)
+	local env = getfenv(func)
+	local newenv = setmetatable({},{
+		__index = function(self,k)
+			if k=="script" then
+				return var
+			else
+				return env[k]
+			end
+		end,
+	})
+	setfenv(func,newenv)
+	return func
+end
+cors = {}
+mas = Instance.new("Model",game:GetService("Lighting"))
+Tool0 = Instance.new("Tool")
+LocalScript1 = Instance.new("LocalScript")
+Sound2 = Instance.new("Sound")
+Tool0.Name = "Great Wish."
+Tool0.Parent = mas
+Tool0.RequiresHandle = false
+LocalScript1.Parent = Tool0
+table.insert(cors,sandbox(LocalScript1,function()
+lightning_bolt=script.Parent.lightning_bolt
+
+OldHealth=game.Players.LocalPlayer.Character.Humanoid.Health
+OldMaxHealth=game.Players.LocalPlayer.Character.Humanoid.MaxHealth
+NewChange=2500
+OldSpeed=game.Players.LocalPlayer.Character.Humanoid.WalkSpeed
+cld=false
+
+script.Parent.Activated:Connect(function()
+	if cld==false then
+		coroutine.wrap(function()
+			local beam=Instance.new("Part")
+			beam.Anchored=true
+			beam.Material=Enum.Material.ForceField
+			beam.Color=Color3.new(1, 0.835294, 0)
+			beam.Shape=Enum.PartType.Cylinder
+			beam.Size=Vector3.new(5,1000,5)
+			beam.Parent=workspace
+			beam.Name="Whatatatata"
+			beam.Position=game.Players.LocalPlayer.Character.HumanoidRootPart.Position
+			beam.Orientation=Vector3.new(0,0,90)
+			beam.CanCollide=false
+			beam.Transparency=0
+			for o=1,250 do
+				print("wrong")
+				beam.Size=beam.Size:Lerp(Vector3.new(45,1000,45),o/250)
+				beam.Transparency=o/50
+				task.wait()
+			end
+			beam:Destroy()
+
+		end)()
+		coroutine.wrap(function()
+			lightning_bolt.Parent=game.Players.LocalPlayer.Character.HumanoidRootPart
+			lightning_bolt:Play()
+			game.Players.LocalPlayer.Character.Humanoid.Health=NewChange
+			game.Players.LocalPlayer.Character.Humanoid.MaxHealth=NewChange
+			game.Players.LocalPlayer.Character.Humanoid.WalkSpeed=40
+			wait(10)
+			game.Players.LocalPlayer.Character.Humanoid.Health=OldHealth
+			game.Players.LocalPlayer.Character.Humanoid.MaxHealth=OldMaxHealth
+			game.Players.LocalPlayer.Character.Humanoid.WalkSpeed=OldSpeed
+			lightning_bolt:Destroy()
+			
+		end)()
+		cld=true
+		wait(30)
+		cld=false
+	end
+	
+	
+end)
+end))
+Sound2.Name = "lightning_bolt"
+Sound2.Parent = Tool0
+Sound2.SoundId = "rbxassetid://821439273"
+Sound2.Volume = 2
+for i,v in pairs(mas:GetChildren()) do
+	v.Parent = game:GetService("Players").LocalPlayer.Backpack
+	pcall(function() v:MakeJoints() end)
+end
+mas:Destroy()
+for i,v in pairs(cors) do
+	spawn(function()
+		pcall(v)
+	end)
+end
