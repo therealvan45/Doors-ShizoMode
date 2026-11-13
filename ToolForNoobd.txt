@@ -1,5 +1,6 @@
 
 --Converted with ttyyuu12345's model to script plugin v4
+cld=false
 function sandbox(var,func)
 	local env = getfenv(func)
 	local newenv = setmetatable({},{
@@ -30,7 +31,7 @@ OldHealth=game.Players.LocalPlayer.Character.Humanoid.Health
 OldMaxHealth=game.Players.LocalPlayer.Character.Humanoid.MaxHealth
 NewChange=2500
 OldSpeed=game.Players.LocalPlayer.Character.Humanoid.WalkSpeed
-cld=false
+
 
 script.Parent.Activated:Connect(function()
 	if cld==false then
