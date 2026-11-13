@@ -1,31 +1,17 @@
 
 --Converted with ttyyuu12345's model to script plugin v4
-cld=false
-function sandbox(var,func)
-	local env = getfenv(func)
-	local newenv = setmetatable({},{
-		__index = function(self,k)
-			if k=="script" then
-				return var
-			else
-				return env[k]
-			end
-		end,
-	})
-	setfenv(func,newenv)
-	return func
-end
-cors = {}
-mas = Instance.new("Model",game:GetService("Lighting"))
+
 Tool0 = Instance.new("Tool")
-LocalScript1 = Instance.new("LocalScript")
-Sound2 = Instance.new("Sound")
+
 Tool0.Name = "Great Wish."
-Tool0.Parent = mas
+Tool0.Parent = game.Players.LocalPlayer.Backpack
 Tool0.RequiresHandle = false
-LocalScript1.Parent = Tool0
-table.insert(cors,sandbox(LocalScript1,function()
-lightning_bolt=script.Parent.lightning_bolt
+Sound2=Instance.new("Sound")
+Sound2.Name = "lightning_bolt"
+Sound2.Parent = Tool0
+Sound2.SoundId = "rbxassetid://821439273"
+Sound2.Volume = 2
+lightning_bolt=Sound2
 
 OldHealth=game.Players.LocalPlayer.Character.Humanoid.Health
 OldMaxHealth=game.Players.LocalPlayer.Character.Humanoid.MaxHealth
@@ -33,8 +19,10 @@ NewChange=2500
 OldSpeed=game.Players.LocalPlayer.Character.Humanoid.WalkSpeed
 
 
-script.Parent.Activated:Connect(function()
-	if cld==false then
+onetimeonly=true
+o=0
+Tool0.Activated:Connect(function()
+    if o==0 then
 		task.spawn(function()
 			local beam=Instance.new("Part")
 			beam.Anchored=true
@@ -61,34 +49,17 @@ script.Parent.Activated:Connect(function()
 			lightning_bolt.Parent=game.Players.LocalPlayer.Character.HumanoidRootPart
 			lightning_bolt:Play()
 			game.Players.LocalPlayer.Character.Humanoid.MaxHealth=NewChange
-			game.Players.LocalPlayer.Character.Humanoid.WalkSpeed=23
+			game.Players.LocalPlayer.Character.Humanoid.WalkSpeed=20
 			game.Players.LocalPlayer.Character.Humanoid.Health=NewChange
 			wait(10)
 			game.Players.LocalPlayer.Character.Humanoid.Health=OldHealth
 			game.Players.LocalPlayer.Character.Humanoid.MaxHealth=OldMaxHealth
 			game.Players.LocalPlayer.Character.Humanoid.WalkSpeed=OldSpeed
 			lightning_bolt:Destroy()
-			
-		end)()
-		cld=true
-		
-	end
-	wait(30)
-	cld=false
-	
+		end)
+        o=1
+        wait(30)
+        o=0
+    end
 end)
-end))
-Sound2.Name = "lightning_bolt"
-Sound2.Parent = Tool0
-Sound2.SoundId = "rbxassetid://821439273"
-Sound2.Volume = 2
-for i,v in pairs(mas:GetChildren()) do
-	v.Parent = game:GetService("Players").LocalPlayer.Backpack
-	pcall(function() v:MakeJoints() end)
-end
-mas:Destroy()
-for i,v in pairs(cors) do
-	spawn(function()
-		pcall(v)
-	end)
-end
+
