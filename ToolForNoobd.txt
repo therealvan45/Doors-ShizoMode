@@ -11,7 +11,7 @@ Sound2.Name = "lightning_bolt"
 Sound2.Parent = Tool0
 Sound2.SoundId = "rbxassetid://821439273"
 Sound2.Volume = 2
-lightning_bolt=Sound2
+lightning_bolt=Sound2:Clone()
 
 OldHealth=game.Players.LocalPlayer.Character.Humanoid.Health
 OldMaxHealth=game.Players.LocalPlayer.Character.Humanoid.MaxHealth
