@@ -11,7 +11,7 @@ Sound2.Name = "lightning_bolt"
 Sound2.Parent = Tool0
 Sound2.SoundId = "rbxassetid://821439273"
 Sound2.Volume = 2
-lightning_bolt=Sound2:Clone()
+
 
 OldHealth=game.Players.LocalPlayer.Character.Humanoid.Health
 OldMaxHealth=game.Players.LocalPlayer.Character.Humanoid.MaxHealth
@@ -19,7 +19,7 @@ NewChange=2500
 OldSpeed=game.Players.LocalPlayer.Character.Humanoid.WalkSpeed
 
 
-onetimeonly=true
+
 o=0
 Tool0.Activated:Connect(function()
     if o==0 then
@@ -46,12 +46,13 @@ Tool0.Activated:Connect(function()
 
 		end)
 		task.spawn(function()
+            lightning_bolt=Sound2:Clone()
 			lightning_bolt.Parent=game.Players.LocalPlayer.Character.HumanoidRootPart
 			lightning_bolt:Play()
 			game.Players.LocalPlayer.Character.Humanoid.MaxHealth=NewChange
 			game.Players.LocalPlayer.Character.Humanoid.WalkSpeed=20
 			game.Players.LocalPlayer.Character.Humanoid.Health=NewChange
-			wait(10)
+			task.wait(10)
 			game.Players.LocalPlayer.Character.Humanoid.Health=OldHealth
 			game.Players.LocalPlayer.Character.Humanoid.MaxHealth=OldMaxHealth
 			game.Players.LocalPlayer.Character.Humanoid.WalkSpeed=OldSpeed
