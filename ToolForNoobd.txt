@@ -23,7 +23,7 @@ OldSpeed=game.Players.LocalPlayer.Character.Humanoid.WalkSpeed
 o=0
 Tool0.Activated:Connect(function()
     if o==0 then
-		task.spawn(function()
+		coroutine.wrap(function()
 			local beam=Instance.new("Part")
 			beam.Anchored=true
 			beam.Material=Enum.Material.ForceField
@@ -37,15 +37,14 @@ Tool0.Activated:Connect(function()
 			beam.CanCollide=false
 			beam.Transparency=0
 			for o=1,250 do
-				print("wrong")
 				beam.Size=beam.Size:Lerp(Vector3.new(45,1000,45),o/250)
 				beam.Transparency=o/50
 				task.wait()
 			end
 			beam:Destroy()
 
-		end)
-		task.spawn(function()
+		end)()
+		coroutine.wrap(function()
             lightning_bolt=Sound2:Clone()
 			lightning_bolt.Parent=game.Players.LocalPlayer.Character.HumanoidRootPart
 			lightning_bolt:Play()
@@ -57,7 +56,7 @@ Tool0.Activated:Connect(function()
 			game.Players.LocalPlayer.Character.Humanoid.MaxHealth=OldMaxHealth
 			game.Players.LocalPlayer.Character.Humanoid.WalkSpeed=OldSpeed
 			lightning_bolt:Destroy()
-		end)
+		end)()
         o=1
         wait(30)
         o=0
