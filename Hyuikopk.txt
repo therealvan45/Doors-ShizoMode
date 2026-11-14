@@ -28,6 +28,9 @@ local entity = spawner.Create({
 		Delay = 2,
 		Reversed = false
 	},
+	Earthquake = {
+        	Enabled=false
+    	},
 	Rebounding = {
 		Enabled = true,
 		Type = "Blitz", -- "Blitz"

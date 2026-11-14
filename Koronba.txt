@@ -24,6 +24,9 @@ local entity = spawner.Create({
 		Range = 100,
 		Values = {1.5, 20, 0.1, 1} -- Magnitude, Roughness, FadeIn, FadeOut
 	},
+	Earthquake = {
+        	Enabled=false
+    	},
 	Movement = {
 		Speed = 20,
 		Delay = 2,

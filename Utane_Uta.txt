@@ -23,6 +23,9 @@
                     Range = 50,
                     Values = {20, 25, 0.1, 1} -- Magnitude, Roughness, FadeIn, FadeOut
                 },
+		Earthquake = {
+        		Enabled=false
+    		},
                 Movement = {
                     Speed = 50,
                     Delay = 0,
