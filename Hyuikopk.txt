@@ -106,7 +106,7 @@ entity:SetCallback("OnSpawned", function()
 
 
         local function spit(Appearence)
-            task.spawn(function()
+
                 local SpitBall=Instance.new("Part",workspace)
                 SpitBall.Position=Appearence
                 SpitBall.Size=Vector3.new(2,2,2)
@@ -131,15 +131,14 @@ entity:SetCallback("OnSpawned", function()
                 end)
 
                 
-            end)
         end
-        SixSeven = task.spawn(function()
+        coroutine.wrap(function()
             while true do
                 wait()
                 ThisStupidGuy.RightUpperArm.RightElbowRigAttachment.CFrame=CFrame.new(0.001, -0.471, 0) * CFrame.Angles(math.rad(90 + math.sin(tick()*24)*30),0,0)
                 ThisStupidGuy.LeftUpperArm.LeftElbowRigAttachment.CFrame=CFrame.new(-0, -0.471, 0) * CFrame.Angles(math.rad(90 + math.sin(tick()*24)*-30),0,0)
             end
-        end)
+        end)()
         while true do
             
             if (plr.Character.HumanoidRootPart.Position - Torsopart.Position).Magnitude <= 30 then
