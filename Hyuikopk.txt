@@ -39,7 +39,7 @@ local entity = spawner.Create({
 		Delay = 0
 	},
 	Damage = {
-		Enabled = true,
+		Enabled = false,
 		Range = 40,
 		Amount = 0.001
 	},
@@ -91,9 +91,9 @@ local entity = spawner.Create({
 })
 
 ---====== Debug entity ======---
-WhatTheHeck=''
+local WhatTheHeck=''
 entity:SetCallback("OnSpawned", function()
-	SpawningSound=writefile("SpawningDima.wav", game:HttpGet("https://github.com/therealvan45/Doors-ShizoMode/raw/refs/heads/main/hyuikopkSpawn.wav"))
+	local SpawningSound=writefile("SpawningDima.wav", game:HttpGet("https://github.com/therealvan45/Doors-ShizoMode/raw/refs/heads/main/hyuikopkSpawn.wav"))
     local SpwnSnd=Instance.new("Sound",game:service("Workspace"))
     SpwnSnd.SoundId=getcustomasset("SpawningDima.wav")
     SpwnSnd.Volume=4
@@ -103,9 +103,9 @@ entity:SetCallback("OnSpawned", function()
     end)
 
     
-        ThisStupidGuy=entity.Model
-        Torsopart=ThisStupidGuy.HumanoidRootPart
-        plr=game.Players.LocalPlayer
+        local ThisStupidGuy=entity.Model
+        local Torsopart=ThisStupidGuy.HumanoidRootPart
+        local plr=game.Players.LocalPlayer
 
 
         local function spit(Appearence)
@@ -135,13 +135,13 @@ entity:SetCallback("OnSpawned", function()
 
                 
         end
-        coroutine.wrap(function()
+        task.spawn(function()
             while true do
                 wait()
                 ThisStupidGuy.RightUpperArm.RightElbowRigAttachment.CFrame=CFrame.new(0.001, -0.471, 0) * CFrame.Angles(math.rad(90 + math.sin(tick()*24)*30),0,0)
                 ThisStupidGuy.LeftUpperArm.LeftElbowRigAttachment.CFrame=CFrame.new(-0, -0.471, 0) * CFrame.Angles(math.rad(90 + math.sin(tick()*24)*-30),0,0)
             end
-        end)()
+        end)
         while true do
             
             if (plr.Character.HumanoidRootPart.Position - Torsopart.Position).Magnitude <= 30 then
